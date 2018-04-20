@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System.Collections.Generic;
 
 namespace TestBot.Dialogs
 {
@@ -24,6 +25,10 @@ namespace TestBot.Dialogs
             var heroCard = new HeroCard();
             heroCard.Title = "Bem vindo!";
             heroCard.Text = "Sou eu, seu Pé de Feijão. Gostaria de saber a temperatura do ar? Digite !temp caso queira saber a umidade do ar? Digite !humiar ou então está interessado saber a umidade do solo, então digite !humisol";
+            heroCard.Images = new List<CardImage>
+            {
+                new CardImage("https://images2.storyjumper.com/transcoder.png?trim&id=2n-jhpiaty51l-57l6u8w5d&maxw=512&maxh=512","Flor")
+            };
 
             message.Attachments.Add(heroCard.ToAttachment());
 

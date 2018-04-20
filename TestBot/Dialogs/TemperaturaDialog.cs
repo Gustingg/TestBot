@@ -28,13 +28,65 @@ namespace TestBot.Dialogs
         {
             await context.PostAsync("Olá! Caso queira saber algo sobre mim é só perguntar! :)");
         }
-        [LuisIntent("Temperatura")]
-        public async Task Temperatura(IDialogContext context, LuisResult result)
+        [LuisIntent("TemperaturaAr")]
+        public async Task TemperaturaAr(IDialogContext context, LuisResult result)
         {
             var temp = result.Entities?.Select(e => e.Type);
             Random x = new Random();
-            int Temp = x.Next(-10, 40);
-            await context.PostAsync($"A temperatura está muito agradável! \n Temperatura atual: " + Temp);
+            int Temp = x.Next(-10, 45);
+            if (Temp >= 20 && Temp <= 35)
+            {
+                await context.PostAsync($"A temperatura do **ar** está muito agradável! \n Temperatura atual: **" + Temp + "**");
+            }
+            else if (Temp > 35)
+            {
+                await context.PostAsync($"O **ar** deste lugar está muito quente! \n Temperatura atual: **" + Temp+"**");
+            }
+            else
+            {
+                await context.PostAsync($"O **ar** deste lugar está muito frio! \n Temperatura atual: **" + Temp + "**");
+            }
+
+        }
+        [LuisIntent("UmidadeAr")]
+        public async Task UmidadeAr(IDialogContext context, LuisResult result)
+        {
+            var temp = result.Entities?.Select(e => e.Type);
+            Random x = new Random();
+            int Temp = x.Next(-10, 45);
+            if (Temp >= 20 && Temp <= 35)
+            {
+                await context.PostAsync($"A **umidade** do Ar está muito agradável! \n Umidade do ar atual: **" + Temp + "**");
+            }
+            else if (Temp > 35)
+            {
+                await context.PostAsync($"A **umidade** deste lugar está muito seco! \n Umidade do ar atual: **" + Temp + "**");
+            }
+            else
+            {
+                await context.PostAsync($"A **umidade** deste lugar está muito umido! \n Umidade do ar atual: **" + Temp + "**");
+            }
+
+        }
+        [LuisIntent("UmidadeSolo")]
+        public async Task UmidadeSolo(IDialogContext context, LuisResult result)
+        {
+            var temp = result.Entities?.Select(e => e.Type);
+            Random x = new Random();
+            int Temp = x.Next(-10, 45);
+            if (Temp >= 20 && Temp <= 35)
+            {
+                await context.PostAsync($"A **umidade** do solo está muito agradável! \n Umidade do solo atual: **" + Temp + "**");
+            }
+            else if (Temp > 35)
+            {
+                await context.PostAsync($"Este **solo** está muito seco! \n Umidade do solo atual: **" + Temp + "**");
+            }
+            else
+            {
+                await context.PostAsync($"Este **solo** está muito umido! \n Umidade do solo atual: **" + Temp + "**");
+            }
+
         }
     }
 }
